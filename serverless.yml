@@ -1,0 +1,28 @@
+service: forward-as-email
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-west-2
+  # iamRoleStatements:
+  #   - Effect: "Allow"
+  #     Action:
+  #       - "s3:ListBucket"
+  #     Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+  #   - Effect: "Allow"
+  #     Action:
+  #       - "s3:PutObject"
+  #     Resource:
+  #       Fn::Join:
+  #         - ""
+  #         - - "arn:aws:s3:::"
+  #           - "Ref" : "ServerlessDeploymentBucket"
+  #           - "/*"
+
+functions:
+  support:
+    handler: handler.forwardAsEmail
+    events:
+      - http:
+          path: support
+          method: post

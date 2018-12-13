@@ -1,0 +1,26 @@
+{
+  "name": "forward-as-email-lambda",
+  "version": "1.0.0",
+  "description": "forwards email content to SNS via Lambda",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertglenn/forward-as-email-lambda.git"
+  },
+  "keywords": [
+    "AWS",
+    "Lambda",
+    "Serverless",
+    "SNS",
+    "Nodejs"
+  ],
+  "author": "Robert Glenn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robertglenn/forward-as-email-lambda/issues"
+  },
+  "homepage": "https://github.com/robertglenn/forward-as-email-lambda#readme"
+}
