@@ -16,3 +16,4 @@ functions:
       - http:
           path: support
           method: post
+          cors: true
