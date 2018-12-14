@@ -2,15 +2,24 @@
 const SNS = require('aws-sdk/clients/sns');
 const sns = new SNS();
 
-const params = {
-  TopicArn: 'arn:aws:sns:us-west-2:439899812822:support-email',
-  Subject: 'default subject',
-  Message: 'deafult message'
-};
-
 module.exports.forwardAsEmail = async (event, context) => {
 
+  const params = {
+    TopicArn: 'arn:aws:sns:us-west-2:439899812822:support-email',
+    Subject: 'default subject',
+    Message: 'default message'
+  };
+
   try {
+    if (event.hasOwnProperty('body') && event.body != null) {
+      const body = JSON.parse(event.body);
+      if (body.hasOwnProperty('emailSubject')) {
+        params.Subject = body.emailSubject;
+      }
+      if (body.hasOwnProperty('emailBody')) {
+        params.Message = body.emailBody;
+      }
+    }
     await sns.publish(params).promise();
   
     return {
