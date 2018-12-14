@@ -4,21 +4,11 @@ provider:
   runtime: nodejs8.10
   stage: dev
   region: us-west-2
-  # iamRoleStatements:
-  #   - Effect: "Allow"
-  #     Action:
-  #       - "s3:ListBucket"
-  #     Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-  #   - Effect: "Allow"
-  #     Action:
-  #       - "s3:PutObject"
-  #     Resource:
-  #       Fn::Join:
-  #         - ""
-  #         - - "arn:aws:s3:::"
-  #           - "Ref" : "ServerlessDeploymentBucket"
-  #           - "/*"
-
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "sns:Publish"
+      Resource: "arn:aws:sns:us-west-2:439899812822:support-email"
 functions:
   support:
     handler: handler.forwardAsEmail
